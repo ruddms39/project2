@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.hair.vo.ProductVO" alias="productVO" />
+		<typeAlias type="com.hair.vo.UsersVO" alias="usersVO" />
+		<typeAlias type="com.hair.vo.SeMessageDTO" alias="seMessageDTO" />
+		<typeAlias type="com.hair.vo.MessageDTO" alias="messageDTO"/>
+		<typeAlias type="com.hair.vo.BoardVO" alias="boardVO"/>
+		<typeAlias type="com.hair.vo.CommentVO" alias="commentVO"/>
+	</typeAliases>
+</configuration>

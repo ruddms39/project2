@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *Mapper.xml 정의->*(테이블명)Mapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL에 대응하는 질의어를 구성 -->
+<!-- mapper 1개가 테이블 1개와 대응, namespace는 변수명 DAO에서 호출할 때 사용할 이름 -->
+<!-- com.spring.Mapper.Member 일반적으로 표현 -->
+<!-- mybatis : insert, update, delete, select 동일한 명령을 여러번 반복사용 -->
+<mapper namespace="usersMapper">
+	<!-- select 질의어 종류, id dao에서 호출할 이름(중복불가) -->
+	<!-- resultType 질의어를 처리후 결과를 보낼 데이터형, parameterType 질의어를 실행할 때 가져온 값의 데이터형 -->
+	<!-- 레코드단위로 결과를 받아서 전달 -->
+	<!-- 태그안에 실질적으로 작업할 질의어를 작성 -->
+	<!-- 전체조회 List, ListAll, 단일조회 List, ListOne, View -->
+	<select id="usersList" resultType="usersVO">
+		SELECT uid, uname, upw, unick, uphone, ubday, gender, regdate,role FROM users order by uname
+	</select>
+
+	<!-- 삽입 -->
+	<!-- 입력폼에서 vo에 데이터가 저장 vo변수를 사용하려면 EL -->
+	<!--parameterType="com.spring.memver.vo.MemberVO" -->
+	<insert id="usersInsert" >
+		INSERT INTO users(uid, uname, upw, upw2, unick, uphone, ubday, gender) 
+		VALUES (#{uid}, #{uname}, (SELECT HEX(AES_ENCRYPT(#{upw}, 'hair'))FROM DUAL),(SELECT HEX(AES_ENCRYPT(#{upw2}, 'hair'))FROM DUAL), #{unick}, #{uphone}, #{ubday}, #{gender})
+	</insert>
+
+	<!-- 해당자료만 조회 -->
+	<select id="usersView" resultType="usersVO">
+		SELECT uid, uname, upw, unick, uphone, ubday, gender, regdate,role
+		FROM users WHERE uid = #{uid}
+	</select>
+
+	<!-- 수정 -->
+	<!-- 기본키는 수정불가 -->
+	<update id="usersUpdate">
+
+		UPDATE users SET
+
+		upw = #{upw},
+		upw= #{upw2},
+		unick = #{unick},
+		uphone= #{uphone},
+		regdate = now()
+
+		WHERE uid = #{uid}
+	</update>
+
+	<!-- 삭제 -->
+	<!-- 해당 아이디의 레코드를 삭제 -->
+	<delete id="usersDelete">
+		DELETE FROM users WHERE uid = #{uid}
+
+	</delete>
+
+	<!-- 아이디와 비밀번호 확인 조회 -->
+	<!-- 아이디와 비밀번호가 같은 자료를 조회해서 검색된 결과수를 출력 1(존재), 0(미존재) -->
+	<select id="checkPw" resultType="int">
+		SELECT count(*) FROM users WHERE uid=#{uid} and upw=#{upw}
+
+	</select>
+
+	<!-- 로그인 후에 사용자 이름 -->
+	<select id="loginCheck" resultType="String">
+		SELECT unick,role FROM users WHERE uid=#{uid} and upw=(SELECT HEX(AES_ENCRYPT(#{upw}, 'hair'))FROM DUAL)
+		
+	</select> 
+	
+	<!-- 아이디 중복 -->
+	<select id="idCheck"  resultType="int">
+		SELECT COUNT(*) FROM users WHERE uid=#{uid}
+	</select>
+	
+	<!-- 닉네임 중복 -->
+	<select id="nickCheck" resultType="int">
+		SELECT COUNT(*) FROM users WHERE unick=#{unick}
+	</select>
+
+</mapper>
+<!-- mapper를 완성한 후에 dao로 가서 작업 -->

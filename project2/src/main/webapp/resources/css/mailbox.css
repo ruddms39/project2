@@ -1,0 +1,605 @@
+@charset "UTF-8";
+
+/* 공통부분 */
+
+@font-face {
+  font-family: "RIDIBatang";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "RIDIBatang";
+}
+
+a {
+  text-decoration: none;
+  color:black;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+hr {
+  margin-top: 0px;
+}
+
+
+section {
+  padding-top: 59px;
+  width: 100%;
+  min-height: 100%;
+}
+
+section > .common_section {
+  position: fixed;
+  z-index: 2;
+  /* border: 1px solid black; */
+  /* height: 650px; */
+  width: 70px;
+  height: 100%;
+  background: linear-gradient(to bottom, #101820, #17222e, #24374b, #38546d);
+}
+
+/* section */
+
+.common_section li a {
+  color: #faebef;
+}
+.common_section > ul > li {
+  font-size: 30px;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.common_section i {
+  /* transition: all 200ms ease; */
+  font-size: 30px;
+}
+
+.active,
+.common_section i:active {
+  transform: scale(1.2);
+  cursor: pointer;
+  color: #a484f3;
+}
+
+
+section > .EPay-index_section {
+  margin-left: 70px;
+  border: 1px solid transparent;
+  width: 200px;
+  float: left;
+  font-size: 20px;
+  position: fixed;
+  height: 100%;
+  background: white;
+  border-right: 2.5px solid rgb(88, 107, 141);
+}
+
+.EPay-index_section li {
+  cursor: pointer;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.EPay-index_section li>ul {
+  position: absolute;
+  width: 200px;
+  padding: 0;
+  display: none;
+  margin: 0;
+}
+
+.EPay-index_section li>div {
+  display: none;
+  font-size: 15px;
+}
+
+/* section2 부분*/
+
+section > .index_section2 h2{
+  margin-left: 450px;
+  font-size: 35px;
+  font-weight: 900;
+  line-height: 100px;
+  margin-top: 0; 
+}
+
+#e-pay-status{
+  padding-left: 450px;
+}
+
+#e-pay-status span {
+  border: 1px solid lightgrey;
+  display: inline-block;
+  text-align: center;
+  width: 447px;
+  height: 300px;
+  font-size: 40px;
+  border-radius: 8px;
+  color: rgb(59, 211, 39);
+}
+
+#e-pay-status span>div{
+  color: black;
+  padding-top: 70px;
+  font-size: 70px;
+}
+
+section > .index_section2 table{
+  margin-left: 450px;
+  line-height: 40px;
+  width: 1350px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+#e-pay-list th{
+  border-bottom: 1px solid black;
+}
+
+#e-pay-list td{
+  border-bottom: 1px solid lightgrey;
+  border-right: 1px dotted lightgrey;
+  border-radius: 5px;
+}
+
+.index_section2-form1{
+  padding-top: 70px;
+}
+
+.index_section2-form1 h2{
+  font-size: 50px;
+  margin-bottom: 10;
+  text-align: center;
+  margin: 0px 160px 0px 0px;
+}
+#table1{
+  padding-left: 1250px;
+  padding-bottom: 40px;
+}
+
+#table1 th{
+  background: lightgrey;
+}
+
+#table2{
+  text-align: center;
+  width: 1020px;
+  margin-left: 500px;
+}
+
+#table2 td{
+  border: 1px solid;
+}
+
+#table2 input{
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+  border: none;
+}
+
+#table2 button{
+  border-radius: 30px;
+  font-size: 20px;
+  background: none;
+}
+
+#table2 textarea{
+  border: none;
+}
+
+.index_section2-form1 #table1 td{
+  text-align: center;
+  height: 50px;
+}
+
+/* 추가 메뉴섹션 예시 */
+
+.index_section h1{
+
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 0; 
+}
+
+.index_section {
+  margin-left: 0px;
+  border: 1px solid transparent;
+  width: 200px;
+  height: 850px;
+  position: fixed;
+}
+
+.index_section {
+  padding-left: 10px;
+  background-color: #d2ddd8;
+  line-height: 30px;
+}
+
+.index_section > ul > li {
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.line {
+  border: 1px solid black;
+  width: 150px;
+}
+
+.index_section ul > li > ul > li:hover {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+<!----------------------------------------------->
+.index_section {
+	margin: 15px;
+	border: 1px solid transparent;
+	width: 200px;
+	height: 880px;
+	position: absolute;
+}
+
+.index_section {
+	padding: 20px;
+	background-color: #d2ddd8;
+	line-height: 30px;
+}
+
+.index_section a {
+	color: black;
+}
+
+.index_section>ul>li {
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.line {
+	border: 1px solid black;
+	width: 150px;
+}
+
+.no_dot {
+	list-style-type: none;
+}
+
+.index_section ul>li>ul>li:hover {
+	cursor: pointer;
+	font-weight: 800;
+}
+
+.msgComponent>li  ul {
+	font-size: 13px;
+	line-height: 25px;
+	/* display:none; */
+}
+
+.msgComponent>li a:active, .msgComponent>li a:hover {
+	color: #5b18ff;
+}
+
+.msgComponent>li>a:active+ul, .msgComponent>li>a:hover+ul {
+	display: block;
+}
+
+.msgComponent>li>ul:active, .msgComponent>li>ul:hover {
+	display: block;
+}
+
+.msg_write_btn {
+	margin-bottom: 10px;
+	background-color: #5b18ff;
+	width: 140px;
+	height: 30px;
+	color: white;
+	border-color: transparent;
+	border-radius: 5px;
+}
+
+/* 쪽지 리스트 구현 */
+.msg_title {
+	margin: 0;
+	padding-left: 10px;
+	text-align: right;
+}
+
+.messageList {
+	/* border: 1px solid red; */
+	margin-left: 280px;
+	padding-top: 20px;
+	width: 80%;
+	min-height: 850px;
+}
+
+.megSearchBox {
+	float: right;
+}
+
+.megSearchBox input {
+	width: 250px;
+	height: 28px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
+.megSearchBox select {
+	width: 100px;
+	height: 28px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+
+.msgComponent {
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.msg_btn:active {
+	box-shadow: 1px 1px 1px grey;
+}
+
+.msg_btn_search:active, .msg_write_btn:active {
+	box-shadow: 1px 1px 1px black;
+}
+
+.msg_btn {
+	height: 30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	width: 70px;
+	background-color: #5b18ff;
+	color: white;
+}
+
+.msg_btn_search {
+	background-color: #5b18ff;
+	color: white;
+	height: 30px;
+	width: 50px;
+	border: none;
+	border-radius: 5px;
+}
+
+.message_table {
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 40px;
+	line-height: 32px;
+	border-collapse: collapse;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+}
+
+.message_table a {
+	color: black;
+}
+
+.message_table tr td {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.message_table th, .message_table td {
+	border: 1px solid lightgray;
+}
+ /* E8F5FF(하늘색) e9e8e6(라이트그레이) */
+.message_table th {
+	background-color: #e9e8e6;
+}
+
+.message_page {
+	text-align: center;
+	margin-top: 30px;
+}
+
+td.Y {
+	color: #BFB9B6;
+}
+
+a.Y {
+	color: #BFB9B6;
+}
+/*modal*/
+.memSearch {
+	background-color: lightgrey;
+	border: transparent;
+	border-radius: 5px;
+	width: 50px;
+	height: 30px;
+}
+
+.memSearch:active {
+	box-shadow: 1px 1px 1px grey;
+}
+
+.modalContainer button {
+	background-color: #5b18ff;
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	border: q;
+	cursor: pointer;
+	width: 80px;
+	height: 35px;
+	margin-top: 15px;
+}
+
+.modalContainer button:active {
+	box-shadow: 1px 1px 1px grey;
+}
+
+.modalWrite {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modalWrite .bg {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalContainer {
+	position: absolute;
+	background-color: #fff;
+	width: 500px;
+	height: 500px;
+	padding: 15px;
+}
+
+.write_form {
+	text-align: center;
+}
+
+.text_Count {
+	float: right;
+}
+
+.fade {
+	display: none;
+}
+
+input#memSearchInput {
+	width: 370px;
+	height: 30px;
+	margin-bottom: 10px;
+	border: transparent;
+	border-bottom: 1px solid lightgrey;
+}
+
+.modalContainer #contentsDiv {
+	width: 430px;
+	height: 250px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	resize: none;
+	padding: 7px;
+}
+
+/* view modal */
+.modalContainer button {
+	background-color: #5b18ff;
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 4px;
+	border: q;
+	cursor: pointer;
+	width: 80px;
+	height: 35px;
+	margin-top: 15px;
+}
+
+.modalContainer button:active {
+	box-shadow: 1px 1px 1px grey;
+}
+
+.modal_view {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal_view .bg {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalContainer {
+	position: absolute;
+	background-color: #fff;
+	width: 500px;
+	height: 500px;
+	padding: 15px;
+}
+
+.view_form {
+	text-align: center;
+}
+
+.fade {
+	display: none;
+}
+
+.modalContainer textarea {
+	width: 430px;
+	height: 250px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	resize: none;
+	margin-top: 10px;
+}
+
+.info {
+	text-align: left;
+	margin-bottom: 15px;
+	padding-left: 20px;
+}
+
+.msg_btns {
+	text-align: center;
+}
+
+/* jQuery autoComplete*/
+#ui-id-1 {
+	background: white;
+	width: 200px;
+	border: 1px solid lightgrey;
+}
+
+#ui-id-1 li {
+	font-size: 15px;
+	line-height: 23px;
+}
+
+#ui-id-1 li:hover {
+	color: #5b18ff;
+	cursor: pointer;
+}
