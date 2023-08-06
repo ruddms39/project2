@@ -1,0 +1,143 @@
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    }
+
+.heading {
+    font-size: 3em;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+    background-blend-mode: multiply,multiply;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    font-weight: 800;
+   }
+   
+
+
+.navbar-nav {
+    width: 100%;
+   }
+
+.nav-item {
+    margin: 0 auto;
+  }
+
+.nav-item a {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  /* 로그인 입력폼 */
+.item {
+  /*border: 1px solid red;*/
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+.item input {
+  border: 1px solid lightgray;
+  height: 40px;
+  width: inherit;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-left: 50px;
+  outline: none;
+  transition: 0.3s;
+}
+.item .fa {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background-color: gray;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  /*border: 1px solid blue;*/
+  text-align: center;
+  line-height: 40px;
+  transition: 0.3s;
+  border-radius: 5px 0 0 5px;
+}
+.item input:focus {
+  border: 1px solid dodgerblue;
+  box-shadow: 0 0 5px dodgerblue;
+}
+.item input:focus + .fa {
+  background-color: dodgerblue;
+}
+.item input:focus::placeholder {
+  visibility: hidden;
+}
+/* list 매물 */
+.list {
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+}
+.list img {
+  width: 100%;
+  transition: 0.5s;
+}
+.detail {
+  background-color: #f8f8f8;
+  position: absolute;
+  width: 100%;
+  bottom: -122px;
+  left: 0;
+  height: 210px;
+  transition: 0.5s;
+  padding: 5px 20px;
+  box-sizing: border-box;
+}
+.list:hover .detail {
+  bottom: 0;
+}
+.list:hover img {
+  filter: blur(2px)
+}
+/* title */
+.title {
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+
+}
+.title h2 {
+  font-size: 16px;
+  color: #888;
+  line-height: 1.2em;
+  float: left;
+}
+.title h2 em {
+  margin-top: 7px;
+  font-style: normal;
+  display: block;
+  color: #000;
+  font-size: 20px;
+}
+.title .price {
+  float: right;
+  font-size: 20px;
+  color:crimson;
+}
+
+.add-cart {
+  border: 1px solid #ddd;
+  margin-top: 0;
+  width: 100%;
+  padding: 7px;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+}
+.add-cart:hover {
+  background-color: #000;
+  color: #fff;
+}
+/* 리스트 끝 */

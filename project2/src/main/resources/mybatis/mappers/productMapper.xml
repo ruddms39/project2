@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<select id="plist" resultType="productVO">
+		SELECT * FROM product WHERE pdel='0' ORDER BY pno DESC
+	</select>
+	<select id="listOne" resultType="productVO">
+		SELECT * FROM product WHERE pno = #{pno}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO product(ptitle, pdetail, pimg,pthumb,sellprice) VALUES(#{ptitle},#{pdetail},#{upFile }, #{thumbFile },#{sellprice})
+	</insert>
+	<select id="totalCount" resultType="Integer">
+		SELECT COUNT(*) FROM product
+	</select>
+	<update id="update">
+		UPDATE product SET ptitle=#{ptitle}, pdetail=#{pdetail} sellprice=#{sellprice} WHERE pno =#{pno}
+	</update>
+	<delete id="deleteI">
+		DELETE FROM product WHERE pno = #{pno}
+	</delete>
+
+	<update id="delete">
+		UPDATE product SET pdel='1'
+		WHERE pno=#{pno }
+	</update>
+	<update id="redelete">
+		UPDATE product SET pdel='0'
+		WHERE pno=#{pno }
+	</update>
+	<update id="like">
+		UPDATE product SET plike = plike+1 WHERE pno =#{pno}
+	</update>
+
+
+</mapper>

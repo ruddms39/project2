@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *Mapper.xml 정의->*(테이블명)Mapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+
+	<select id="view" resultType="boardVO">
+		SELECT bno, btitle, bcontent, bwriter, regdate, updatedate, viewcnt, bdel
+		FROM board
+		WHERE bno = #{bno}
+	</select>
+
+	<!-- 게시글 등록 -->
+	<insert id="insert">
+		INSERT INTO board(btitle, bcontent, bwriter) VALUES (#{btitle}, #{bcontent}, #{bwriter})
+	</insert>
+
+	<!-- 게시글 수정 -->
+	<update id="update">
+		UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent}, updatedate= current_timestamp(), bdel=#{bdel}  WHERE bno=#{bno}
+	</update>
+
+	<update id="delete">
+		UPDATE board SET bdel='차단'
+		WHERE bno=#{bno }
+	</update>
+
+	<!-- 해당 게시글에 조회수를 1증가 -->
+	<update id="increaseViewcnt">
+		UPDATE board set viewcnt = viewcnt+1 WHERE bno=#{bno}
+	</update>
+
+	<select id="listAll" resultType="boardVO">
+		SELECT bno, btitle, bcontent, bwriter, regdate, updatedate, viewcnt, bdel FROM board
+
+		<include refid="search"></include>
+		ORDER BY bno DESC
+		LIMIT 20 OFFSET #{start}
+
+		<!--질의어에 해당부분을 추가 -->
+	</select>
+	<!-- sql의 일부분을 분리해서 선언할 때 -->
+	<!-- == 같은것 찾을 때, like 포함되어 있는 것 찾을 때 -->
+	<!-- writer like 홍길동%-시작하는 단어, %홍길동-끝나는 단어, %홍길동%-포함된 단어 -->
+	<sql id="search">
+		<choose>
+			<when test="searchOption == 'all'">
+				<!-- 모든곳에서 조회 -->
+				WHERE bdel='등록' and (bwriter like concat('%',#{keyword},'%')
+				OR btitle like concat('%',#{keyword},'%')
+				OR bcontent like concat('%',#{keyword},'%')
+				OR bdel like concat('%',#{keyword},'%')) 
+			</when>
+			<otherwise>
+				<!-- 해당부분에서만 조회 -->
+				WHERE bdel='등록' and (${searchOption} like concat('%',#{keyword},'%')) 
+			</otherwise>
+		</choose>
+	</sql>
+	<select id="totalCount" resultType="Integer">
+		SELECT COUNT(*) FROM board <include refid="search"></include>
+	</select>
+
+</mapper>

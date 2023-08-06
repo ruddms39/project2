@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<select id="listU" resultType="usersVO">
+		SELECT * FROM users
+		<include refid="searchU"></include>
+		order by uname
+		LIMIT 20 OFFSET #{start}
+	</select>
+	<select id="listB" resultType="boardVO">
+		SELECT * FROM board
+		<include refid="searchB"></include>
+		ORDER BY bno DESC
+		LIMIT 20 OFFSET #{start}
+	</select>
+	<select id="listP" resultType="productVO">
+		SELECT * FROM product
+		<include refid="searchP"></include>
+		ORDER BY pno DESC
+		LIMIT 8 OFFSET #{start}
+	</select>
+	<select id="listOne" resultType="usersVO">
+		SELECT *
+		FROM users WHERE uno = #{uno}
+	</select>
+	<select id="viewB" resultType="boardVO">
+		SELECT bno, btitle, bcontent, bwriter, regdate, updatedate, viewcnt, bdel
+		FROM board
+		WHERE bno = #{bno}
+	</select>
+	<select id="totCnt" resultType="int">
+		SELECT count(*) FROM users
+	</select>
+	<update id="update">
+		UPDATE users SET role=#{role}, unick=#{unick}, udel=#{udel}, uid=#{uid} WHERE uno=#{uno}
+	</update>
+	<select id="totalCountU" resultType="Integer">
+		SELECT COUNT(*) FROM users
+		<include refid="searchU"></include>
+	</select>
+	<select id="totalCountB" resultType="Integer">
+		SELECT COUNT(*) FROM board
+		<include refid="searchB"></include>
+	</select>
+	<select id="totalCountP" resultType="Integer">
+		SELECT COUNT(*) FROM product
+		<include refid="searchP"></include>
+	</select>
+	<update id="delete">
+		UPDATE board SET bdel='차단'
+		WHERE bno=#{bno }
+	</update>
+	<update id="redelete">
+		UPDATE board SET bdel='등록'
+		WHERE bno=#{bno }
+	</update>
+	
+	<sql id="searchU">
+		<choose>
+			<when test="searchOption == 'all'">
+				<!-- 모든곳에서 조회 -->
+				WHERE uno and (uid like concat('%',#{keyword},'%')
+				OR unick like concat('%',#{keyword},'%')
+				OR uname like concat('%',#{keyword},'%'))
+			</when>
+			<otherwise>
+				<!-- 해당부분에서만 조회 -->
+				WHERE uno and (${searchOption} like concat('%',#{keyword},'%')) order by uname
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="searchB">
+		<choose>
+			<when test="searchOption == 'all'">
+				<!-- 모든곳에서 조회 -->
+				WHERE (bwriter like concat('%',#{keyword},'%')
+				OR btitle like concat('%',#{keyword},'%')
+				OR bcontent like concat('%',#{keyword},'%')
+				OR bdel like concat('%',#{keyword},'%')) 
+			</when>
+			<otherwise>
+				<!-- 해당부분에서만 조회 -->
+				WHERE (${searchOption} like concat('%',#{keyword},'%'))
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="searchP">
+		<choose>
+			<when test="searchOption == 'all'">
+				<!-- 모든곳에서 조회 -->
+				WHERE (ptitle like concat('%',#{keyword},'%')
+				OR pdetail like concat('%',#{keyword},'%'))
+			</when>
+			<otherwise>
+				<!-- 해당부분에서만 조회 -->
+				WHERE (${searchOption} like concat('%',#{keyword},'%'))
+			</otherwise>
+		</choose>
+	</sql>
+</mapper>

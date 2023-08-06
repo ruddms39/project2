@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+	<insert id="CBW">
+		INSERT INTO comments(bno, cconte, cname, uid) VALUES(#{bno},#{cconte},#{cname}, #{uid})
+	</insert>
+	<insert id="CPW">
+		INSERT INTO pcomments(pno, cconte, cname, uid) VALUES(#{pno},#{cconte},#{cname}, #{uid})
+	</insert>
+
+	<select id="CBL" resultType="commentVO">
+		SELECT * FROM comments WHERE bno=#{bno} ORDER BY bno DESC
+	</select>
+	<select id="CPL" resultType="commentVO">
+		SELECT * FROM pcomments WHERE pno=#{pno} ORDER BY pno DESC
+	</select>
+
+	<insert id="CcPW" parameterType="commentVO">
+		INSERT INTO pcomments (cconte, cgroup, cname, uid,pno)
+		VALUES (#{cconte}, #{cno }, #{cname}, #{uid },#{pno})
+	</insert>
+	<insert id="CcBW" parameterType="commentVO">
+		INSERT INTO comments (cconte, cgroup, cname, uid,bno)
+		VALUES (#{cconte}, #{cno }, #{cname}, #{uid },#{bno})
+	</insert>
+	<update id="RPC" parameterType="commentVO">
+		UPDATE pcomments SET cconte=#{cconte}
+		WHERE cno=#{cno} AND uid=#{uid}
+	</update>
+	<update id="RBC" parameterType="commentVO">
+		UPDATE comments SET cconte=#{cconte}
+		WHERE cno=#{cno} AND uid=#{uid}
+	</update>
+	<delete id="CBD">
+		DELETE FROM comments
+		WHERE cno=#{cno} AND bno=#{bno} AND uid=#{uid}
+	</delete>
+	<delete id="CPD">
+		DELETE FROM pcomments
+		WHERE cno=#{cno} AND pno=#{pno} AND uid=#{uid}
+	</delete>
+
+</mapper>
